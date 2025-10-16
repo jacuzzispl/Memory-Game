@@ -12,4 +12,3 @@ instance/
 # IDE / OS files
 .vscode/
 .DS_Store
-c

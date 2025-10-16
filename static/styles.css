@@ -16,13 +16,22 @@ h1, h2, h3, form {
     align-items: center;
 }
 
+#response-box {
+    display: none;
+}
+
 .num-content {
     font-size: 50px;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
+
+.present {
+    display: flex !important;
+}
+
 
 
 

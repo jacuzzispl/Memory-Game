@@ -8,28 +8,33 @@
 {% block body %}
 <h1>Test</h1>
 <div id="display-box">
-    <div id="hidden" class="response-box"></div>
+</div>
+<div id="response-box" class="hidden">
+     <p>WHAZZZAAAA</p>
 </div>
 <form action="" method="POST">
     <input type="submit" name="return-button" value="Return">
 </form>
 <script>
-    const numbers = {{ num_list | tojson }}
-    const displayBox = document.getElementById("display-box")
-    const responseBox = document.getElementById("response-box")
-    displayBox.classList.add("num-content")
+    const numbers = {{ num_list | tojson }};
+    const displayBox = document.getElementById("display-box");
+    const responseBox = document.getElementById("response-box");
+    displayBox.classList.add("num-content");
     
-    let i = 0
+    let i = 0;
 
     function showNextNumber() {
-        if (i < numbers.length) {
+        
+        if (i < numbers.length) {;
             displayBox.textContent = numbers[i];
             i++;
             setTimeout(showNextNumber, 1000);
         } else {
-           responseBox.classList.remove("hid") = 
+           displayBox.classList.add("hidden");
+           responseBox.classList.add("present");
         }
     }
     showNextNumber()
+    responseBox.classList.remove("hidden");
 </script>
 {% endblock %}
