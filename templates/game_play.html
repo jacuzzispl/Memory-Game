@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+
+{% endblock %}
+
+{% block body %}
+<h1>Test</h1>
+<div id="display-box">
+    <div id="hidden" class="response-box"></div>
+</div>
+<form action="" method="POST">
+    <input type="submit" name="return-button" value="Return">
+</form>
+<script>
+    const numbers = {{ num_list | tojson }}
+    const displayBox = document.getElementById("display-box")
+    const responseBox = document.getElementById("response-box")
+    displayBox.classList.add("num-content")
+    
+    let i = 0
+
+    function showNextNumber() {
+        if (i < numbers.length) {
+            displayBox.textContent = numbers[i];
+            i++;
+            setTimeout(showNextNumber, 1000);
+        } else {
+           responseBox.classList.remove("hid") = 
+        }
+    }
+    showNextNumber()
+</script>
+{% endblock %}

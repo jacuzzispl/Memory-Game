@@ -1,0 +1,28 @@
+body {
+    background-color: beige;
+}
+
+h1, h2, h3, form {
+    text-align: center;
+}
+
+#display-box, #response-box {
+    height: 100px;
+    width: 100px;
+    border-style: solid;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.num-content {
+    font-size: 50px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
