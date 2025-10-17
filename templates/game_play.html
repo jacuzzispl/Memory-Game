@@ -10,13 +10,18 @@
 <div id="display-box">
 </div>
 <div id="response-box" class="hidden">
-     <p>WHAZZZAAAA</p>
+    <form action="/" method="POST">
+        <p>What was the sequence?</p>
+        <input type="text" name="response" id="number-sequence">
+        <button type="button" id="response-button">Confirm</button>
+    </form>
 </div>
-<form action="" method="POST">
-    <input type="submit" name="return-button" value="Return">
-</form>
+<button type="button" id="return-button">
+    <a href="/">Return</a>
+</button>
 <script>
     const numbers = {{ num_list | tojson }};
+    const numSequence = {{ num_sequence | tojson }}
     const displayBox = document.getElementById("display-box");
     const responseBox = document.getElementById("response-box");
     displayBox.classList.add("num-content");
@@ -24,7 +29,7 @@
     let i = 0;
 
     function showNextNumber() {
-        
+
         if (i < numbers.length) {;
             displayBox.textContent = numbers[i];
             i++;
@@ -36,5 +41,14 @@
     }
     showNextNumber()
     responseBox.classList.remove("hidden");
+
+    document.getElementById("response-button").addEventListener("click", function(event) {
+        const userResponse = document.getElementById("number-sequence").value;
+        if (userResponse == numSequence) {
+            console.log("This is the correct answer!")
+        } else {
+            console.log("This is the incorrect answer!", numSequence, userResponse)
+        }
+    })
 </script>
 {% endblock %}

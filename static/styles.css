@@ -6,9 +6,9 @@ h1, h2, h3, form {
     text-align: center;
 }
 
-#display-box, #response-box {
-    height: 100px;
-    width: 100px;
+#display-box {
+    height: 200px;
+    width: 200px;
     border-style: solid;
     margin: auto auto;
     display: flex;
@@ -17,8 +17,24 @@ h1, h2, h3, form {
 }
 
 #response-box {
+    height: 200px;
+    width: 200px;
+    border: 5px solid purple;
+    margin: auto auto;
     display: none;
+    
 }
+
+button {
+    display: block;
+    margin: 0 auto;
+
+}
+
+button > a {
+    text-decoration: none;
+}
+
 
 .num-content {
     font-size: 50px;
