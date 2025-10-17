@@ -15,6 +15,13 @@ def home():
         return render_template('game_play.html', num_list=num_list, num_sequence=num_sequence )
     else:
         return render_template('game_home.html')
+    
+@app.route("/finish", methods=["POST", "GET"])
+def finish():
+    data = request.get_json()
+    print("I too am listening.")
+    return data
+
 
 
 if __name__ == "__main__":

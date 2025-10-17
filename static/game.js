@@ -9,7 +9,28 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         });
     }
+
+    const advanceButton = document.getElementById("advance-button");
+    if (advanceButton) {
+        console.log("Advance: Created");
+        document.addEventListener("click", function(event) {
+            console.log("I am listening")
+            fetch("/finish", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    dspan: window.dSpan
+                })
+            }
+
+            )
+        })
+    }
 });
+
+
 
 
 

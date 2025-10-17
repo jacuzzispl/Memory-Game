@@ -11,9 +11,10 @@
 </div>
 <div id="response-box" class="hidden">
     <form action="/" method="POST">
-        <p>What was the sequence?</p>
-        <input type="text" name="response" id="number-sequence">
+        <input type="text" name="response" id="number-sequence" placeholder="What was the response?">
         <button type="button" id="response-button">Confirm</button>
+    </form>
+    <form action="/finish" method="POST" id="response-form">
     </form>
 </div>
 <button type="button" id="return-button">
@@ -24,7 +25,10 @@
     const numSequence = {{ num_sequence | tojson }}
     const displayBox = document.getElementById("display-box");
     const responseBox = document.getElementById("response-box");
+    const responseForm = document.getElementById("response-form");
     displayBox.classList.add("num-content");
+    
+    window.dSpan = numbers.length + 1;
     
     let i = 0;
 
@@ -38,17 +42,34 @@
            displayBox.classList.add("hidden");
            responseBox.classList.add("present");
         }
-    }
-    showNextNumber()
+    };
+    showNextNumber();
     responseBox.classList.remove("hidden");
 
     document.getElementById("response-button").addEventListener("click", function(event) {
         const userResponse = document.getElementById("number-sequence").value;
         if (userResponse == numSequence) {
-            console.log("This is the correct answer!")
+
+            console.log("This is the correct answer!", numbers.length + 1)
+            
+            const advanceButton = document.createElement('button');
+            advanceButton.setAttribute("name", "continue");
+            advanceButton.setAttribute("type", "button");
+            advanceButton.setAttribute("id", "advance-button");
+            advanceButton.textContent = `Try ${numbers.length + 1} numbers next?`; 
+
+            const retryButton = document.createElement("button");
+            retryButton.setAttribute("name", "retry");
+            retryButton.setAttribute("type", "submit");
+            retryButton.textContent = "Retry?";
+
+            responseBox.appendChild(advanceButton);
+            responseBox.appendChild(retryButton);
+
+
         } else {
-            console.log("This is the incorrect answer!", numSequence, userResponse)
+            console.log("This is the incorrect answer!", numSequence, userResponse);
         }
-    })
+    });
 </script>
 {% endblock %}
