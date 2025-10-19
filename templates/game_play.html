@@ -21,6 +21,19 @@
     <a href="/">Return</a>
 </button>
 <script>
+
+    async function sendData(digitSpan) {
+        const response = await fetch("/finish", {
+            method: "POST",
+            headers: {"Content-Type": "application/json" },
+            body: JSON.stringify({dspan: digitSpan})
+        });
+
+        const data = await response.json();
+        console.log(data);
+    };
+
+
     const numbers = {{ num_list | tojson }};
     const numSequence = {{ num_sequence | tojson }}
     const displayBox = document.getElementById("display-box");
@@ -44,14 +57,14 @@
         }
     };
     showNextNumber();
-    responseBox.classList.remove("hidden");
+    //responseBox.classList.remove("hidden");
 
     document.getElementById("response-button").addEventListener("click", function(event) {
         const userResponse = document.getElementById("number-sequence").value;
         if (userResponse == numSequence) {
 
             console.log("This is the correct answer!", numbers.length + 1)
-            
+
             const advanceButton = document.createElement('button');
             advanceButton.setAttribute("name", "continue");
             advanceButton.setAttribute("type", "button");
@@ -71,5 +84,11 @@
             console.log("This is the incorrect answer!", numSequence, userResponse);
         }
     });
+    
+    document.addEventListener("click", function(event) {
+        sendData(window.dSpan);
+    });
+
+
 </script>
 {% endblock %}

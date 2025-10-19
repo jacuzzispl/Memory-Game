@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
 
-    const advanceButton = document.getElementById("advance-button");
+/*    const advanceButton = document.getElementById("advance-button");
     if (advanceButton) {
         console.log("Advance: Created");
         document.addEventListener("click", function(event) {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             )
         })
-    }
+    } */
 });
 
 
