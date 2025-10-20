@@ -30,23 +30,12 @@
         });
 
         const data = await response.json();
-        console.log(data);
+        numbers = data["num_list"];
+        numSequence = data["num_sequence"];
     };
 
-
-    const numbers = {{ num_list | tojson }};
-    const numSequence = {{ num_sequence | tojson }}
-    const displayBox = document.getElementById("display-box");
-    const responseBox = document.getElementById("response-box");
-    const responseForm = document.getElementById("response-form");
-    displayBox.classList.add("num-content");
-    
-    window.dSpan = numbers.length + 1;
-    
-    let i = 0;
-
     function showNextNumber() {
-
+        console.log("ran");
         if (i < numbers.length) {;
             displayBox.textContent = numbers[i];
             i++;
@@ -56,8 +45,19 @@
            responseBox.classList.add("present");
         }
     };
+
+
+    var numbers = {{ num_list | tojson }};
+    var numSequence = {{ num_sequence | tojson }};
+    const displayBox = document.getElementById("display-box");
+    const responseBox = document.getElementById("response-box");
+    const responseForm = document.getElementById("response-form");
+    displayBox.classList.add("num-content");
+    window.dSpan = numbers.length + 1;
+    
+    let i = 0;
+
     showNextNumber();
-    //responseBox.classList.remove("hidden");
 
     document.getElementById("response-button").addEventListener("click", function(event) {
         const userResponse = document.getElementById("number-sequence").value;
@@ -86,9 +86,18 @@
     });
     
     document.addEventListener("click", function(event) {
-        sendData(window.dSpan);
+        if (event.target.id == "advance-button") {
+            console.log(true);
+            try {
+                sendData(window.dSpan);
+                i = 0;
+                console.log(i);
+                showNextNumber();
+            } catch (e) {
+            console.log(e);
+            }
+        }
     });
-
 
 </script>
 {% endblock %}
