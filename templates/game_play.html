@@ -35,7 +35,6 @@
     };
 
     function showNextNumber() {
-        console.log("ran");
         if (i < numbers.length) {;
             displayBox.textContent = numbers[i];
             i++;
@@ -49,9 +48,10 @@
 
     var numbers = {{ num_list | tojson }};
     var numSequence = {{ num_sequence | tojson }};
-    const displayBox = document.getElementById("display-box");
-    const responseBox = document.getElementById("response-box");
-    const responseForm = document.getElementById("response-form");
+    displayBox = document.getElementById("display-box");
+    responseBox = document.getElementById("response-box");
+    console.log(responseBox)
+    responseForm = document.getElementById("response-form");
     displayBox.classList.add("num-content");
     window.dSpan = numbers.length + 1;
     
@@ -87,11 +87,12 @@
     
     document.addEventListener("click", function(event) {
         if (event.target.id == "advance-button") {
-            console.log(true);
             try {
                 sendData(window.dSpan);
                 i = 0;
                 console.log(i);
+                displayBox.classList.remove("hidden");
+                responseBox.classList.remove("present");
                 showNextNumber();
             } catch (e) {
             console.log(e);
