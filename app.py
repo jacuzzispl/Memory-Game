@@ -13,15 +13,20 @@ def sequence_generator(x):
 @app.route("/", methods=["POST", "GET"])
 def home():
     if request.method == "POST":
+        print("first")
         digit_span = int(request.form.get('dspan'))
+        print(digit_span)
         num_list, num_sequence = sequence_generator(digit_span)
-        return render_template('game_play.html', num_list=num_list, num_sequence=num_sequence )
+        return render_template('game_play.html', num_list=num_list, num_sequence=num_sequence)
     else:
+        print("GET")
         return render_template('game_home.html')
     
 @app.route("/finish", methods=["POST", "GET"])
 def finish():
+    print("finish ran")
     data = request.get_json()
+    print(data)
     num_list, num_sequence = sequence_generator(data['dspan'])
     print(num_list, num_sequence)
     return jsonify({"num_list": num_list, "num_sequence": num_sequence})
