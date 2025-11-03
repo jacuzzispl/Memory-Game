@@ -32,6 +32,5 @@ def finish():
     return jsonify({"num_list": num_list, "num_sequence": num_sequence})
 
 
-
 if __name__ == "__main__":
     app.run(debug=True)
